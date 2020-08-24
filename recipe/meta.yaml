@@ -1,0 +1,47 @@
+{% set name = "doctr" %}
+{% set version = "1.8.0" %}
+{% set sha256 = "b84495ee7357916364dc3752b5b930d7b534df1ada33d197b5e467ec8e22a360" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  entry_points:
+    - doctr = doctr.__main__:main
+
+requirements:
+  build:
+    - python >=3.6
+    - pip
+  run:
+    - python >=3.6
+    - cryptography
+    - pyyaml
+    - requests
+
+test:
+  imports:
+    - doctr
+
+  commands:
+    - doctr --help
+    - doctr configure --help
+    - doctr deploy --help
+
+about:
+  home: https://drdoctr.github.io
+  license: MIT
+  summary: Deploy docs from Travis to GitHub pages.
+  description: |
+    A tool for automatically building docs on Travis CI, and deploying
+    them to GitHub pages.
+  doc_url: https://drdoctr.github.io
+  dev_url: https://github.com/drdoctr/doctr
