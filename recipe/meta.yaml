@@ -1,6 +1,6 @@
 {% set name = "doctr" %}
-{% set version = "1.8.0" %}
-{% set sha256 = "b84495ee7357916364dc3752b5b930d7b534df1ada33d197b5e467ec8e22a360" %}
+{% set version = "1.9.0" %}
+{% set sha256 = "952aba39c776d5660ea7737b43b44ddabed21798df16d7517910de3641d030f7" %}
 
 package:
   name: {{ name|lower }}
